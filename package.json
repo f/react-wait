@@ -1,0 +1,37 @@
+{
+  "name": "use-wait",
+  "version": "0.0.1",
+  "description": "Complex Loader Management for React Applications",
+  "main": "./dist/use-wait.js",
+  "module": "./dist/use-wait.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle --jsx React.createElement"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/f/use-wait.git"
+  },
+  "keywords": [
+    "react",
+    "use",
+    "hooks",
+    "vue-wait",
+    "loading",
+    "loader"
+  ],
+  "author": "Fatih Kadir Akın <fatihkadirakin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/f/use-wait/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.6.0"
+  },
+  "devDependencies": {
+    "microbundle": "^0.7.0"
+  },
+  "homepage": "https://github.com/f/use-wait#readme"
+}

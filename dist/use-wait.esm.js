@@ -1,0 +1,2 @@
+import n,{useState as t,useContext as r}from"react";var e=n.createContext([]);function i(n){return r(e).waiters.includes(n.message)?n.waiting:n.children}function c(i){var c=t(r(e)),a=c[0],u=c[1];return n.createElement(e.Provider,{value:{waiters:a,isWaiting:function(n){return a.includes(n)},start:function(n){if(a.includes(n))return a;var t=a.concat([n]);u(t)},end:function(n){u(a.filter(function(t){return t!==n}))}}},i.children)}function a(){var n=r(e);return Object.assign({},n,{Wait:i})}export{c as Waiter,a as useWait};
+//# sourceMappingURL=use-wait.esm.js.map
