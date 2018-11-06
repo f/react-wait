@@ -20,7 +20,7 @@
 ## **Why not `React.Suspense`?**:
 React has its own **Suspense** feature to manage all the async works. It's now about code-splitting (not data-fetching).
 
-`useWait` allows you to manage waiting experiences much more explicitly and not only for Promised/async patterns but also complete loading management.
+`useWait` allows you to manage waiting experiences much more explicitly and **not only for Promised/async patterns but also complete loading management**.
 
 # Overview
 
