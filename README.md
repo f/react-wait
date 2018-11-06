@@ -15,7 +15,7 @@
 
 > [Play with Demo](https://codesandbox.io/s/pmp3w1om17).
 
-**use-wait** isa **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages an array with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
+**use-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages an array with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
 
 # Quick Start
 
