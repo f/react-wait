@@ -12,6 +12,7 @@ test("startWaiting", async () => {
   expect(api.startWaiting(['a', 'b'], 'c')).toEqual(['a', 'b', 'c'])
   expect(api.startWaiting([0, 1], 2)).toEqual([0, 1, 2])
   expect(api.startWaiting(['a b', 'c d'], 'e f')).toEqual(['a b', 'c d', 'e f'])
+  expect(api.startWaiting(['a', 'b'], 'b')).toEqual(['a', 'b'])
 });
 
 test("endWaiting", async () => {
