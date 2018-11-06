@@ -1,6 +1,6 @@
 {
   "name": "use-wait",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Complex Loader Management for React Applications",
   "main": "./dist/use-wait.js",
   "module": "./dist/use-wait.esm.js",
