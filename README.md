@@ -2,7 +2,7 @@
 <img src="./resources/logo.png" width="500">
 </p>
 <p align="center">
- Multiple Loader Management for <a href="http://reactjs.org/" rel="nofollow" class="rich-diff-level-one">React</a>.
+ Complex Loader Management for <a href="http://reactjs.org/" rel="nofollow" class="rich-diff-level-one">React</a>.
 </p>
 
 <p align="center">
