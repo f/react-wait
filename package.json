@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "microbundle --jsx React.createElement",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -29,10 +29,20 @@
     "url": "https://github.com/f/use-wait/issues"
   },
   "peerDependencies": {
-    "react": ">=16.6.0"
+    "react": ">=16.7.0-alpha"
   },
   "devDependencies": {
-    "microbundle": "^0.7.0"
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "jest": "^23.6.0",
+    "microbundle": "^0.7.0",
+    "react": ">=16.7.0-alpha",
+    "react-dom": ">=16.7.0-alpha",
+    "regenerator-runtime": "^0.12.1"
   },
   "homepage": "https://github.com/f/use-wait#readme"
 }
