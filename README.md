@@ -17,6 +17,11 @@
 
 **use-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages an array with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
 
+## **Why not `React.Suspense`?**:
+React has its own **Suspense** feature to manage all the async works. It's now about code-splitting (not data-fetching).
+
+`useWait` allows you to manage waiting experiences much more explicitly and not only for Promised/async patterns but also complete loading management.
+
 # Quick Start
 
 If you are a **try and learn** developer, you can start trying the **use-wait** now using [codesandbox.io](https://codesandbox.io).
@@ -34,11 +39,11 @@ yarn add use-wait
 import { Waiter, useWait } from 'use-wait'
 
 function UserCreateButton() {
-  const { start, end, isWaiting, Wait } = useWait();
+  const { startWaiting, endWaiting, isWaiting, Wait } = useWait();
 
   return (
     <button
-      onClick={() => start("creating user")}
+      onClick={() => startWaiting("creating user")}
       disabled={isWaiting("creating user")}
     >
       <Wait message="creating user" waiting={<div>Creating user!</div>}>
@@ -94,24 +99,24 @@ const { isWaiting } = useWait();
 return <button disabled={isWaiting('creating user')}>Disabled while creating user</button>;
 ```
 
-#### `start(waiter String)`
+#### `startWaiting(waiter String)`
 
 Starts the given waiter.
 
 ```jsx
-const { start } = useWait();
+const { startWaiting } = useWait();
 
-return <button onClick={() => start('message')}>Start</button>;
+return <button onClick={() => startWaiting('message')}>Start</button>;
 ```
 
-#### `end(waiter String)`
+#### `endWaiting(waiter String)`
 
 Stops the given waiter.
 
 ```jsx
 const { end } = useWait();
 
-return <button onClick={() => end('message')}>Stop</button>;
+return <button onClick={() => endWaiting('message')}>Stop</button>;
 ```
 
 ## Using `Wait` Component

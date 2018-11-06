@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { anyWaiting, isWaiting, startWaiting, endWaiting } from "./api";
 
 const WaitingContext = React.createContext([]);
 
@@ -15,19 +16,13 @@ export function Waiter(props) {
     <WaitingContext.Provider
       value={{
         waiters,
-        anyWaiting() {
-          return waiters.length > 0;
+        anyWaiting: () => anyWaiting(waiters),
+        isWaiting: waiter => isWaiting(waiters, waiter),
+        startWaiting(waiter) {
+          setWaiters(startWaiting(waiters, waiter));
         },
-        isWaiting(waiter) {
-          return waiters.includes(waiter);
-        },
-        start(waiter) {
-          if (waiters.includes(waiter)) return waiters;
-          const newWaiters = [...waiters, waiter];
-          setWaiters(newWaiters);
-        },
-        end(waiter) {
-          setWaiters(waiters.filter(l => l !== waiter));
+        endWaiting(waiter) {
+          setWaiters(endWaiting(waiters, waiter));
         }
       }}
     >

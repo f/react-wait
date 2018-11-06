@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "microbundle --jsx React.createElement"
+    "build": "microbundle --jsx React.createElement",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
