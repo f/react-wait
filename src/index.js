@@ -9,25 +9,33 @@ function Wait(props) {
     : props.children;
 }
 
+export const anyWaiting = waiters => waiters.length > 0;
+
+export const isWaiting = (waiters, waiter) => waiters.includes(waiter);
+
+export const start = (waiters, waiter) => {
+  if (isWaiting(waiters, waiter)) return waiters;
+  return [...waiters, waiter];
+};
+
+export const end = (waiters, waiter) => {
+  if (!isWaiting(waiters, waiter)) return waiters;
+  return waiters.filter(l => l !== waiter);
+};
+
 export function Waiter(props) {
   const [waiters, setWaiters] = useState(useContext(WaitingContext));
   return (
     <WaitingContext.Provider
       value={{
         waiters,
-        anyWaiting() {
-          return waiters.length > 0;
-        },
-        isWaiting(waiter) {
-          return waiters.includes(waiter);
-        },
+        anyWaiting: () => anyWaiting(waiters),
+        isWaiting: waiter => isWaiting(waiters, waiter),
         start(waiter) {
-          if (waiters.includes(waiter)) return waiters;
-          const newWaiters = [...waiters, waiter];
-          setWaiters(newWaiters);
+          setWaiters(start(waiters, waiter));
         },
         end(waiter) {
-          setWaiters(waiters.filter(l => l !== waiter));
+          setWaiters(end(waiters, waiter));
         }
       }}
     >

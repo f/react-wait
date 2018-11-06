@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "microbundle --jsx React.createElement"
+    "build": "microbundle --jsx React.createElement",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,10 @@
     "react": ">=16.6.0"
   },
   "devDependencies": {
-    "microbundle": "^0.7.0"
+    "microbundle": "^0.7.0",
+    "jest": "23.6.0",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "latest"
   },
   "homepage": "https://github.com/f/use-wait#readme"
 }
