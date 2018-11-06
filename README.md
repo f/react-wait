@@ -49,6 +49,8 @@ function UserCreateButton() {
 }
 ```
 
+### 3. Wrap with the `Waiter` Context Provider
+
 And you should wrap your `App` with `Waiter` component. It's actually a `Context.Provider` that provides a loading context to the component tree.
 
 ```jsx
