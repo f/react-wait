@@ -44,8 +44,8 @@ test("contextless", async () => {
       <button id="end-2" onClick={() => endWaiting('test-2')}>end</button>
       <div id="is">{isWaiting('test') ? 'true' : 'false'}</div>
       <div id="any">{anyWaiting() ? 'true' : 'false'}</div>
-      <div id="waiters">{JSON.stringify(waiters)}</div>
-      <div id="waitComp"><Wait message="test" waiting="Loading">Not Loading</Wait></div>
+      <div id="waiters">{JSON.stringify([...waiters])}</div>
+      <div id="waitComp"><Wait on="test" fallback="Loading">Not Loading</Wait></div>
     </div>);
   }
   const app = mount(<Waiter><Component/></Waiter>);
@@ -89,8 +89,8 @@ test("contextful", async () => {
       <button id="end-2" onClick={() => test2.endWaiting()}>end</button>
       <div id="is">{test.isWaiting() ? 'true' : 'false'}</div>
       <div id="any">{anyWaiting() ? 'true' : 'false'}</div>
-      <div id="waiters">{JSON.stringify(waiters)}</div>
-      <div id="waitComp"><test.Wait waiting="Loading">Not Loading</test.Wait></div>
+      <div id="waiters">{JSON.stringify([...waiters])}</div>
+      <div id="waitComp"><test.Wait fallback="Loading">Not Loading</test.Wait></div>
     </div>);
   }
   const app = mount(<Waiter><Component/></Waiter>);

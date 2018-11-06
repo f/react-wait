@@ -5,8 +5,8 @@ const WaitingContext = React.createContext();
 
 function Wait(props) {
   const context = useContext(WaitingContext);
-  return context.waiters.has(props.message)
-    ? props.waiting
+  return context.waiters.has(props.on)
+    ? props.fallback
     : props.children;
 }
 
@@ -21,7 +21,7 @@ export function Waiter(props) {
           isWaiting: () => isWaiting(waiters, waiter),
           startWaiting: () => setWaiters(startWaiting(waiters, waiter)),
           endWaiting: () => setWaiters(endWaiting(waiters, waiter)),
-          Wait: (props) => (<Wait message={waiter} {...props}/>)
+          Wait: (props) => (<Wait on={waiter} {...props}/>)
         }),
         anyWaiting: () => anyWaiting(waiters),
         isWaiting: waiter => isWaiting(waiters, waiter),
@@ -42,7 +42,6 @@ export function useWait() {
   const context = useContext(WaitingContext);
   return {
     ...context,
-    waiters: [...context.waiters],
     Wait
   };
 }

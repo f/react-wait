@@ -56,7 +56,7 @@ function C() {
   }
 
   return <button disabled={isWaiting("creating user")} onClick={createUser}>
-    <Wait message="creating user" waiting={<Spinner/>}>
+    <Wait on="creating user" fallback={<Spinner/>}>
      Create User
     </Wait>
   </button>
@@ -89,7 +89,7 @@ function UserCreateButton() {
       onClick={() => startWaiting("creating user")}
       disabled={isWaiting("creating user")}
     >
-      <Wait message="creating user" waiting={<div>Creating user!</div>}>
+      <Wait on="creating user" fallback={<div>Creating user!</div>}>
         Create User
       </Wait>
     </button>
@@ -168,8 +168,8 @@ return <button onClick={() => endWaiting('message')}>Stop</button>;
 function Component() {
   const { Wait } = useWait();
   return <Wait
-    message="the waitin g message"
-    waiting={<div>Waiting...</div>}
+    on="the waiting message"
+    fallback={<div>Waiting...</div>}
     >
     The content after waiting done
   </Wait>
@@ -181,8 +181,8 @@ Better example for a `button` with loading state:
 ```jsx
 <button disabled={isWaiting('creating user')}>
   <Wait
-    message='creating user'
-    waiting={<div>Creating User...</div>}>
+    on='creating user'
+    fallback={<div>Creating User...</div>}>
     Create User
   </Wait>
 </button>
@@ -203,8 +203,8 @@ Now you can use your spinner everywhere using `waiting` attribute:
 ```jsx
 <button disabled={isWaiting('creating user')}>
   <Wait
-    message='creating user'
-    waiting={<Spinner/>}>
+    on='creating user'
+    fallback={<Spinner/>}>
     Create User
   </Wait>
 </button>
@@ -218,7 +218,7 @@ To keep your code DRY you can create a `Waiting Context` using `createWaitingCon
 function CreateUserButton() {
   const { createWaitingContext } = useWait();
 
-  // All methods will be curried with "creating user" message.
+  // All methods will be curried with "creating user" on.
   const { startWaiting, endWaiting, isWaiting, Wait } = createWaitingContext('creating user');
 
   function createUser() {
@@ -227,7 +227,7 @@ function CreateUserButton() {
   }
 
   return <Button disabled={isWaiting()} onClick={createUser}>
-    <Wait waiting="Creating User...">
+    <Wait fallback="Creating User...">
       Create User
     </Wait>
   </Button>
@@ -236,7 +236,7 @@ function CreateUserButton() {
 
 ## Contributors
 
- - Fatih Kadir Akın, (creator)
+- Fatih Kadir Akın, (creator)
 
 ## Other Implementations
 
