@@ -20,7 +20,7 @@
 
 > [Play with Demo](https://codesandbox.io/s/pmp3w1om17).
 
-**use-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages a **`Set`** with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
+**use-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages a **`Array`** with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
 
 ## **Why not `React.Suspense`?**:
 React has its own Suspense feature to manage all the async works. For now it only supports code-splitting (not data-fetching).
