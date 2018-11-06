@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import { Waiter, useWait } from "..";
+import { Waiter, useWait } from "../dist/use-wait";
 import * as api from "../src/api";
 
 Enzyme.configure({ adapter: new Adapter() });
