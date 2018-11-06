@@ -9,6 +9,10 @@
  <strong class="rich-diff-level-one">Read the <a href="https://medium.com/@fkadev/managing-complex-waiting-experiences-on-web-uis-29534d2d92a8" rel="nofollow">Medium post "Managing Complex Waiting Experiences on Web UIs"</a>.</strong>
 </p>
 
+<p align="center">
+<img src="./resources/use-wait.gif" width="600" />
+</p>
+
 [![npm version](https://badge.fury.io/js/use-wait.svg)](https://badge.fury.io/js/use-wait)
 
 ---
