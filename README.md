@@ -22,6 +22,44 @@ React has its own **Suspense** feature to manage all the async works. It's now a
 
 `useWait` allows you to manage waiting experiences much more explicitly and not only for Promised/async patterns but also complete loading management.
 
+# Overview
+
+Here's a quick overview that what's `useWait` for:
+
+```jsx
+import { useWait, Waiter } from 'use-wait';
+
+function A() {
+  const { isWaiting } = useWait();
+  return <div>{isWaiting('creating user') ? "Creating User..." : "Nothing happens"}</div>;
+}
+
+function B() {
+  const { anyWaiting } = useWait();
+  return <div>{anyWaiting() ? "Something happening on app..." : "Nothing happens"}</div>;
+}
+
+function C() {
+  const { startWaiting, endWaiting, isWaiting } = useWait();
+  
+  function createUser() {
+    startWaiting('creating user');
+    // Faking the async work:
+    setTimeout(() => {
+      endWaiting('creating user')
+    }, 1000);
+  }
+  
+  return <button disabled={isWaiting("creating user")} onClick={createUser}>
+    <Wait message="creating user" waiting={<Spinner/>}>
+     Create User
+    </Wait>
+  </button>
+}
+
+ReactDOM.render(<Waiter><C/></Waiter>, document.getElementById("root"));
+```
+
 # Quick Start
 
 If you are a **try and learn** developer, you can start trying the **use-wait** now using [codesandbox.io](https://codesandbox.io).
