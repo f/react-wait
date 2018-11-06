@@ -14,6 +14,7 @@
 </p>
 
 [![npm version](https://badge.fury.io/js/use-wait.svg)](https://badge.fury.io/js/use-wait)
+[![build](https://api.travis-ci.org/f/use-wait.svg?branch=master)](https://travis-ci.org/f/use-wait)
 
 ---
 
