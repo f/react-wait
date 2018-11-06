@@ -15,6 +15,9 @@ export function Waiter(props) {
     <WaitingContext.Provider
       value={{
         waiters,
+        anyWaiting() {
+          return waiters.length > 0;
+        },
         isWaiting(waiter) {
           return waiters.includes(waiter);
         },
