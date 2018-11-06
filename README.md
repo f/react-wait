@@ -61,14 +61,14 @@ ReactDOM.render(
 );
 ```
 
-## 🔧 Installation
+## Installation
 
 ```bash
 $ yarn add use-wait
 # or if you using npm
 $ npm install use-wait
 ```
-## 🌈 The API
+## The API
 
 **use-wait** provides some helpers to you to use in your templates.
 
@@ -102,7 +102,7 @@ const { end } = useWait();
 return <button onClick={() => end('message')}>Stop</button>;
 ```
 
-## 💧 Using `Wait` Component
+## Using `Wait` Component
 
 ```jsx
 function Component() {
@@ -128,7 +128,7 @@ Better example for a `button` with loading state:
 </button>
 ```
 
-## ⚡️ Making Reusable Loader Components
+## Making Reusable Loader Components
 
 With reusable loader components, you will be able to use custom loader components as example below. This will allow you to create better **user loading experience**.
 
@@ -150,17 +150,17 @@ Now you can use your spinner everywhere using `waiting` attribute:
 </button>
 ```
 
-## 🎯 Contributors
+## Contributors
 
  - Fatih Kadir Akın, (creator)
 
-## 🔗 Other Implementations
+## Other Implementations
 
 Since **use-wait** based on a very simple idea, it can be implemented on other frameworks.
 
  - [vue-wait](https://github.com/f/vue-wait): Multiple Process Loader Management for Vue.
  - [dom-wait](https://github.com/f/dom-wait): Multiple Process Loader Management for vanilla JavaScript.
 
-## 🔑 License
+## License
 
 MIT © [Fatih Kadir Akın](https://github.com/f)
