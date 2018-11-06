@@ -155,7 +155,7 @@ Now you can use your spinner everywhere using `waiting` attribute:
 ```jsx
 <button disabled={isWaiting('creating user')}>
   <Wait
-    messgage='creating user'
+    message='creating user'
     waiting={<Spinner/>}>
     Create User
   </Wait>
