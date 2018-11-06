@@ -72,14 +72,24 @@ $ npm install use-wait
 
 **use-wait** provides some helpers to you to use in your templates.
 
+#### `anyWaiting()`
+
+Returns boolean value if any loader exists in context.
+
+```jsx
+const { anyWaiting } = useWait();
+
+return <button disabled={anyWaiting()}>Disabled while waiting</button>;
+```
+
 #### `isWaiting(waiter String)`
 
-Returns boolean value if any loader exists context.
+Returns boolean value if given loader exists in context.
 
 ```jsx
 const { isWaiting } = useWait();
 
-return <button disabled={isWaiting('message')}>Disabled while </button>;
+return <button disabled={isWaiting('creating user')}>Disabled while creating user</button>;
 ```
 
 #### `start(waiter String)`
