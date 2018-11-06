@@ -45,7 +45,7 @@ function B() {
 
 function C() {
   const { startWaiting, endWaiting, isWaiting } = useWait();
-  
+
   function createUser() {
     startWaiting('creating user');
     // Faking the async work:
@@ -53,7 +53,7 @@ function C() {
       endWaiting('creating user')
     }, 1000);
   }
-  
+
   return <button disabled={isWaiting("creating user")} onClick={createUser}>
     <Wait message="creating user" waiting={<Spinner/>}>
      Create User
@@ -207,6 +207,30 @@ Now you can use your spinner everywhere using `waiting` attribute:
     Create User
   </Wait>
 </button>
+```
+
+## Creating Waiting Contexts using `createWaitingContext(context String)`
+
+To keep your code DRY you can create a `Waiting Context` using `createWaitingContext`.
+
+```jsx
+function CreateUserButton() {
+  const { createWaitingContext } = useWait();
+
+  // All methods will be curried with "creating user" message.
+  const { startWaiting, endWaiting, isWaiting, Wait } = createWaitingContext('creating user');
+
+  function createUser() {
+    startWaiting()
+    setTimeout(endWaiting, 1000);
+  }
+
+  return <Button disabled={isWaiting()} onClick={createUser}>
+    <Wait waiting="Creating User...">
+      Create User
+    </Wait>
+  </Button>
+}
 ```
 
 ## Contributors

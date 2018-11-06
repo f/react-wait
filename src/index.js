@@ -12,10 +12,17 @@ function Wait(props) {
 
 export function Waiter(props) {
   const [waiters, setWaiters] = useState([]);
+
   return (
     <WaitingContext.Provider
       value={{
         waiters,
+        createWaitingContext: waiter => ({
+          isWaiting: () => isWaiting(waiters, waiter),
+          startWaiting: () => setWaiters(startWaiting(waiters, waiter)),
+          endWaiting: () => setWaiters(endWaiting(waiters, waiter)),
+          Wait: (props) => (<Wait message={waiter} {...props}/>)
+        }),
         anyWaiting: () => anyWaiting(waiters),
         isWaiting: waiter => isWaiting(waiters, waiter),
         startWaiting(waiter) {
