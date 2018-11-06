@@ -13,13 +13,15 @@
 
 ---
 
-> [Play with demo above](https://codesandbox.io/s/pmp3w1om17).
+> [Play with Demo](https://codesandbox.io/s/pmp3w1om17).
 
 **use-wait** isa **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages an array with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
 
-# ⏩Quick Start
+# Quick Start
 
 If you are a **try and learn** developer, you can start trying the **use-wait** now using [codesandbox.io](https://codesandbox.io).
+
+[![Edit useWait](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pmp3w1om17)
 
 ### 1. Install:
 ```bash
