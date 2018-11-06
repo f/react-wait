@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { anyWaiting, isWaiting, startWaiting, endWaiting } from "./api";
 
 const WaitingContext = React.createContext([]);
 
@@ -9,20 +10,6 @@ function Wait(props) {
     : props.children;
 }
 
-export const anyWaiting = waiters => waiters.length > 0;
-
-export const isWaiting = (waiters, waiter) => waiters.includes(waiter);
-
-export const start = (waiters, waiter) => {
-  if (isWaiting(waiters, waiter)) return waiters;
-  return [...waiters, waiter];
-};
-
-export const end = (waiters, waiter) => {
-  if (!isWaiting(waiters, waiter)) return waiters;
-  return waiters.filter(l => l !== waiter);
-};
-
 export function Waiter(props) {
   const [waiters, setWaiters] = useState(useContext(WaitingContext));
   return (
@@ -31,11 +18,11 @@ export function Waiter(props) {
         waiters,
         anyWaiting: () => anyWaiting(waiters),
         isWaiting: waiter => isWaiting(waiters, waiter),
-        start(waiter) {
-          setWaiters(start(waiters, waiter));
+        startWaiting(waiter) {
+          setWaiters(startWaiting(waiters, waiter));
         },
-        end(waiter) {
-          setWaiters(end(waiters, waiter));
+        endWaiting(waiter) {
+          setWaiters(endWaiting(waiters, waiter));
         }
       }}
     >
