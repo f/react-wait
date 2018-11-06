@@ -138,7 +138,7 @@ Better example for a `button` with loading state:
 ```jsx
 <button disabled={isWaiting('creating user')}>
   <Wait
-    messgage='creating user'
+    message='creating user'
     waiting={<div>Creating User...</div>}>
     Create User
   </Wait>
