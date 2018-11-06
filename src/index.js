@@ -5,13 +5,13 @@ const WaitingContext = React.createContext();
 
 function Wait(props) {
   const context = useContext(WaitingContext);
-  return context.waiters.includes(props.message)
+  return context.waiters.has(props.message)
     ? props.waiting
     : props.children;
 }
 
 export function Waiter(props) {
-  const [waiters, setWaiters] = useState([]);
+  const [waiters, setWaiters] = useState(new Set([]));
 
   return (
     <WaitingContext.Provider
@@ -42,6 +42,7 @@ export function useWait() {
   const context = useContext(WaitingContext);
   return {
     ...context,
+    waiters: [...context.waiters],
     Wait
   };
 }

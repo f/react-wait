@@ -2,36 +2,36 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import { Waiter, useWait } from "../dist/use-wait";
+import { Waiter, useWait } from "../src/index";
 import * as api from "../src/api";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 test("startWaiting", async () => {
-  expect(api.startWaiting(['a'], 'b')).toEqual(['a', 'b'])
-  expect(api.startWaiting(['a', 'b'], 'c')).toEqual(['a', 'b', 'c'])
-  expect(api.startWaiting([0, 1], 2)).toEqual([0, 1, 2])
-  expect(api.startWaiting(['a b', 'c d'], 'e f')).toEqual(['a b', 'c d', 'e f'])
+  expect(api.startWaiting(new Set(['a']), 'b')).toEqual(new Set(['a', 'b']))
+  expect(api.startWaiting(new Set(['a', 'b']), 'c')).toEqual(new Set(['a', 'b', 'c']))
+  expect(api.startWaiting(new Set([0, 1]), 2)).toEqual(new Set([0, 1, 2]))
+  expect(api.startWaiting(new Set(['a b', 'c d']), 'e f')).toEqual(new Set(['a b', 'c d', 'e f']))
 });
 
 test("endWaiting", async () => {
-  expect(api.endWaiting(['a', 'b'], 'b')).toEqual(['a'])
-  expect(api.endWaiting(['a', 'b', 'c'], 'b')).toEqual(['a', 'c'])
-  expect(api.endWaiting([0, 1, 2, 3], 3)).toEqual([0, 1, 2])
-  expect(api.endWaiting(['a b', 'c d'], 'a b')).toEqual(['c d'])
+  expect(api.endWaiting(new Set(['a', 'b']), 'b')).toEqual(new Set(['a']))
+  expect(api.endWaiting(new Set(['a', 'b', 'c']), 'b')).toEqual(new Set(['a', 'c']))
+  expect(api.endWaiting(new Set([0, 1, 2, 3]), 3)).toEqual(new Set([0, 1, 2]))
+  expect(api.endWaiting(new Set(['a b', 'c d']), 'a b')).toEqual(new Set(['c d']))
 });
 
 test("isWaiting", async () => {
-  expect(api.isWaiting(['a', 'b'], 'b')).toEqual(true)
-  expect(api.isWaiting(['a', 'b', 'c'], 'd')).toEqual(false)
-  expect(api.isWaiting([0, 1, 2, 3], 4)).toEqual(false)
-  expect(api.isWaiting(['a b', 'c d'], 'a b')).toEqual(true)
+  expect(api.isWaiting(new Set(['a', 'b']), 'b')).toEqual(true)
+  expect(api.isWaiting(new Set(['a', 'b', 'c']), 'd')).toEqual(false)
+  expect(api.isWaiting(new Set([0, 1, 2, 3]), 4)).toEqual(false)
+  expect(api.isWaiting(new Set(['a b', 'c d']), 'a b')).toEqual(true)
 });
 
 test("isWaiting", async () => {
-  expect(api.anyWaiting(['a', 'b'])).toEqual(true)
-  expect(api.anyWaiting(['a', 'b', 'c'])).toEqual(true)
-  expect(api.anyWaiting([])).toEqual(false)
+  expect(api.anyWaiting(new Set(['a', 'b']))).toEqual(true)
+  expect(api.anyWaiting(new Set(['a', 'b', 'c']))).toEqual(true)
+  expect(api.anyWaiting(new Set([]))).toEqual(false)
 });
 
 test("contextless", async () => {

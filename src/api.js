@@ -1,13 +1,13 @@
-export const anyWaiting = waiters => waiters.length > 0;
+export const anyWaiting = waiters => waiters.size > 0;
 
-export const isWaiting = (waiters, waiter) => waiters.includes(waiter);
+export const isWaiting = (waiters, waiter) => waiters.has(waiter);
 
 export const startWaiting = (waiters, waiter) => {
-  if (isWaiting(waiters, waiter)) return waiters;
-  return [...waiters, waiter];
+  waiters.add(waiter);
+  return waiters;
 };
 
 export const endWaiting = (waiters, waiter) => {
-  if (!isWaiting(waiters, waiter)) return waiters;
-  return waiters.filter(l => l !== waiter);
+  waiters.delete(waiter);
+  return waiters;
 };
