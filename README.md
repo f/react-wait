@@ -2,7 +2,7 @@
 <img src="./resources/logo.png" width="500">
 </p>
 <p align="center">
- Complex Loader Management for <a href="http://reactjs.org/" rel="nofollow" class="rich-diff-level-one">React</a>.
+ Complex Loader Management Hook for <a href="http://reactjs.org/" rel="nofollow" class="rich-diff-level-one">React</a>.
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-<img src="./resources/react-wait.gif" width="600" />
+<img src="./resources/use-wait.gif" width="600" />
 </p>
 
 [![npm version](https://badge.fury.io/js/react-wait.svg)](https://badge.fury.io/js/react-wait)
