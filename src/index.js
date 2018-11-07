@@ -5,9 +5,7 @@ const WaitingContext = React.createContext();
 
 function Wait(props) {
   const context = useContext(WaitingContext);
-  return context.waiters.includes(props.on)
-    ? props.fallback
-    : props.children;
+  return context.waiters.includes(props.on) ? props.fallback : props.children;
 }
 
 export function Waiter(props) {
@@ -21,7 +19,7 @@ export function Waiter(props) {
           isWaiting: () => isWaiting(waiters, waiter),
           startWaiting: () => setWaiters(startWaiting(waiters, waiter)),
           endWaiting: () => setWaiters(endWaiting(waiters, waiter)),
-          Wait: (props) => (<Wait on={waiter} {...props}/>)
+          Wait: props => <Wait on={waiter} {...props} />
         }),
         anyWaiting: () => anyWaiting(waiters),
         isWaiting: waiter => isWaiting(waiters, waiter),
