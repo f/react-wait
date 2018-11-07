@@ -1,6 +1,6 @@
 {
   "name": "react-wait",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "Complex Loader Management for React Applications",
   "main": "./dist/react-wait.js",
   "module": "./dist/react-wait.esm.js",
