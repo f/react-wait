@@ -1,9 +1,9 @@
 {
-  "name": "use-wait",
+  "name": "react-wait",
   "version": "0.2.5",
   "description": "Complex Loader Management for React Applications",
-  "main": "./dist/use-wait.js",
-  "module": "./dist/use-wait.esm.js",
+  "main": "./dist/react-wait.js",
+  "module": "./dist/react-wait.esm.js",
   "files": [
     "dist"
   ],
@@ -13,10 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/f/use-wait.git"
+    "url": "git+https://github.com/f/react-wait.git"
   },
   "keywords": [
     "react",
+    "wait",
     "use",
     "hooks",
     "vue-wait",
@@ -26,7 +27,7 @@
   "author": "Fatih Kadir Akın <fatihkadirakin@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/f/use-wait/issues"
+    "url": "https://github.com/f/react-wait/issues"
   },
   "peerDependencies": {
     "react": ">=16.7.0-alpha"
@@ -46,7 +47,7 @@
     "react-dom": ">=16.7.0-alpha",
     "regenerator-runtime": "^0.12.1"
   },
-  "homepage": "https://github.com/f/use-wait#readme",
+  "homepage": "https://github.com/f/react-wait#readme",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

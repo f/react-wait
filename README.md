@@ -10,19 +10,20 @@
 </p>
 
 <p align="center">
-<img src="./resources/use-wait.gif" width="600" />
+<img src="./resources/react-wait.gif" width="600" />
 </p>
 
-[![npm version](https://badge.fury.io/js/use-wait.svg)](https://badge.fury.io/js/use-wait)
-[![build](https://api.travis-ci.org/f/use-wait.svg?branch=master)](https://travis-ci.org/f/use-wait)
+[![npm version](https://badge.fury.io/js/react-wait.svg)](https://badge.fury.io/js/react-wait)
+[![build](https://api.travis-ci.org/f/react-wait.svg?branch=master)](https://travis-ci.org/f/react-wait)
 
 ---
 
 > [Play with Demo](https://codesandbox.io/s/pmp3w1om17).
 
-**use-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages a **`Array`** with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
+**react-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages a **`Arrayg`** with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
 
 ## **Why not `React.Suspense`?**:
+
 React has its own Suspense feature to manage all the async works. For now it only supports code-splitting (not data-fetching).
 
 `useWait` allows you to manage waiting experiences much more explicitly and **not only for Promised/async patterns but also complete loading management**.
@@ -32,54 +33,70 @@ React has its own Suspense feature to manage all the async works. For now it onl
 Here's a quick overview that what's `useWait` for:
 
 ```jsx
-import { useWait, Waiter } from 'use-wait';
+import { useWait, Waiter } from "react-wait";
 
 function A() {
   const { isWaiting } = useWait();
-  return <div>{isWaiting('creating user') ? "Creating User..." : "Nothing happens"}</div>;
+  return (
+    <div>
+      {isWaiting("creating user") ? "Creating User..." : "Nothing happens"}
+    </div>
+  );
 }
 
 function B() {
   const { anyWaiting } = useWait();
-  return <div>{anyWaiting() ? "Something happening on app..." : "Nothing happens"}</div>;
+  return (
+    <div>
+      {anyWaiting() ? "Something happening on app..." : "Nothing happens"}
+    </div>
+  );
 }
 
 function C() {
   const { startWaiting, endWaiting, isWaiting } = useWait();
 
   function createUser() {
-    startWaiting('creating user');
+    startWaiting("creating user");
     // Faking the async work:
     setTimeout(() => {
-      endWaiting('creating user')
+      endWaiting("creating user");
     }, 1000);
   }
 
-  return <button disabled={isWaiting("creating user")} onClick={createUser}>
-    <Wait on="creating user" fallback={<Spinner/>}>
-     Create User
-    </Wait>
-  </button>
+  return (
+    <button disabled={isWaiting("creating user")} onClick={createUser}>
+      <Wait on="creating user" fallback={<Spinner />}>
+        Create User
+      </Wait>
+    </button>
+  );
 }
 
-ReactDOM.render(<Waiter><C/></Waiter>, document.getElementById("root"));
+ReactDOM.render(
+  <Waiter>
+    <C />
+  </Waiter>,
+  document.getElementById("root")
+);
 ```
 
 # Quick Start
 
-If you are a **try and learn** developer, you can start trying the **use-wait** now using [codesandbox.io](https://codesandbox.io).
+If you are a **try and learn** developer, you can start trying the **react-wait** now using [codesandbox.io](https://codesandbox.io).
 
 [![Edit useWait](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pmp3w1om17)
 
 ### 1. Install:
+
 ```bash
-yarn add use-wait
+yarn add react-wait
 ```
 
 ### 2. Require:
 
 ```jsx
-import { Waiter, useWait } from 'use-wait'
+import { Waiter, useWait } from "react-wait";
 
 function UserCreateButton() {
   const { startWaiting, endWaiting, isWaiting, Wait } = useWait();
@@ -114,13 +131,14 @@ ReactDOM.render(
 ## Installation
 
 ```bash
-$ yarn add use-wait
+$ yarn add react-wait
 # or if you using npm
-$ npm install use-wait
+$ npm install react-wait
 ```
+
 ## The API
 
-**use-wait** provides some helpers to you to use in your templates.
+**react-wait** provides some helpers to you to use in your templates.
 
 #### `anyWaiting()`
 
@@ -139,7 +157,11 @@ Returns boolean value if given loader exists in context.
 ```jsx
 const { isWaiting } = useWait();
 
-return <button disabled={isWaiting('creating user')}>Disabled while creating user</button>;
+return (
+  <button disabled={isWaiting("creating user")}>
+    Disabled while creating user
+  </button>
+);
 ```
 
 #### `startWaiting(waiter String)`
@@ -149,7 +171,7 @@ Starts the given waiter.
 ```jsx
 const { startWaiting } = useWait();
 
-return <button onClick={() => startWaiting('message')}>Start</button>;
+return <button onClick={() => startWaiting("message")}>Start</button>;
 ```
 
 #### `endWaiting(waiter String)`
@@ -159,7 +181,7 @@ Stops the given waiter.
 ```jsx
 const { end } = useWait();
 
-return <button onClick={() => endWaiting('message')}>Stop</button>;
+return <button onClick={() => endWaiting("message")}>Stop</button>;
 ```
 
 ## Using `Wait` Component
@@ -167,22 +189,19 @@ return <button onClick={() => endWaiting('message')}>Stop</button>;
 ```jsx
 function Component() {
   const { Wait } = useWait();
-  return <Wait
-    on="the waiting message"
-    fallback={<div>Waiting...</div>}
-    >
-    The content after waiting done
-  </Wait>
+  return (
+    <Wait on="the waiting message" fallback={<div>Waiting...</div>}>
+      The content after waiting done
+    </Wait>
+  );
 }
 ```
 
 Better example for a `button` with loading state:
 
 ```jsx
-<button disabled={isWaiting('creating user')}>
-  <Wait
-    on='creating user'
-    fallback={<div>Creating User...</div>}>
+<button disabled={isWaiting("creating user")}>
+  <Wait on="creating user" fallback={<div>Creating User...</div>}>
     Create User
   </Wait>
 </button>
@@ -194,17 +213,15 @@ With reusable loader components, you will be able to use custom loader component
 
 ```jsx
 function Spinner() {
-  return <img src="spinner.gif"/>;
+  return <img src="spinner.gif" />;
 }
 ```
 
 Now you can use your spinner everywhere using `waiting` attribute:
 
 ```jsx
-<button disabled={isWaiting('creating user')}>
-  <Wait
-    on='creating user'
-    fallback={<Spinner/>}>
+<button disabled={isWaiting("creating user")}>
+  <Wait on="creating user" fallback={<Spinner />}>
     Create User
   </Wait>
 </button>
@@ -219,18 +236,20 @@ function CreateUserButton() {
   const { createWaitingContext } = useWait();
 
   // All methods will be curried with "creating user" on.
-  const { startWaiting, endWaiting, isWaiting, Wait } = createWaitingContext('creating user');
+  const { startWaiting, endWaiting, isWaiting, Wait } = createWaitingContext(
+    "creating user"
+  );
 
   function createUser() {
-    startWaiting()
+    startWaiting();
     setTimeout(endWaiting, 1000);
   }
 
-  return <Button disabled={isWaiting()} onClick={createUser}>
-    <Wait fallback="Creating User...">
-      Create User
-    </Wait>
-  </Button>
+  return (
+    <Button disabled={isWaiting()} onClick={createUser}>
+      <Wait fallback="Creating User...">Create User</Wait>
+    </Button>
+  );
 }
 ```
 
@@ -240,10 +259,10 @@ function CreateUserButton() {
 
 ## Other Implementations
 
-Since **use-wait** based on a very simple idea, it can be implemented on other frameworks.
+Since **react-wait** based on a very simple idea, it can be implemented on other frameworks.
 
- - [vue-wait](https://github.com/f/vue-wait): Multiple Process Loader Management for Vue.
- - [dom-wait](https://github.com/f/dom-wait): Multiple Process Loader Management for vanilla JavaScript.
+- [vue-wait](https://github.com/f/vue-wait): Multiple Process Loader Management for Vue.
+- [dom-wait](https://github.com/f/dom-wait): Multiple Process Loader Management for vanilla JavaScript.
 
 ## License
 
