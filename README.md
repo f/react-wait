@@ -85,7 +85,7 @@ ReactDOM.render(
 
 If you are a **try and learn** developer, you can start trying the **react-wait** now using [codesandbox.io](https://codesandbox.io).
 
-[![Edit useWait](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pmp3w1om17)
+[![Edit useWait](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/y3w5v5lk0j)
 
 ### 1. Install:
 
