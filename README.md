@@ -20,7 +20,7 @@
 
 > [Play with Demo](https://codesandbox.io/s/pmp3w1om17).
 
-**react-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages a **`Arrayg`** with multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
+**react-wait** is a **React Hook** helps to manage multiple loading states on the page without any conflict. It's based on a **very simple idea** that manages an **`Array`** of multiple loading states. The **built-in loader component** listens its registered loader and immediately become loading state.
 
 ## **Why not `React.Suspense`?**:
 
