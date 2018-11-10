@@ -15,6 +15,7 @@
 
 [![npm version](https://badge.fury.io/js/react-wait.svg)](https://badge.fury.io/js/react-wait)
 [![build](https://api.travis-ci.org/f/react-wait.svg?branch=master)](https://travis-ci.org/f/react-wait)
+[![codecov](https://codecov.io/gh/f/react-wait/branch/master/graph/badge.svg)](https://codecov.io/gh/f/react-wait)
 
 ---
 
