@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "microbundle --jsx React.createElement",
-    "test": "jest --verbose"
+    "test": "jest --verbose && codecov"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "babel-jest": "^23.6.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "codecov": "^3.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "husky": "^1.1.3",
@@ -58,5 +59,9 @@
       "prettier --write src",
       "git add"
     ]
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
