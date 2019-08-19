@@ -1,67 +1,112 @@
-import n, { useState as t, useContext as r } from "react";
-var i = function(n) {
-    return n.length > 0;
-  },
-  e = function(n, t) {
-    return n.includes(t);
-  },
-  u = function(n, t) {
-    return e(n, t) ? n : n.concat([t]);
-  },
-  c = function(n, t) {
-    return n.filter(function(n) {
-      return n !== t;
-    });
-  },
-  a = n.createContext();
+import n, { createContext as t, useContext as r, useState as e } from "react";
+import i from "hoist-non-react-statics";
+var a = t();
 function o(n) {
   return r(a).waiters.includes(n.on) ? n.fallback : n.children;
 }
-function f(r) {
-  var f = t([]),
-    s = f[0],
-    g = f[1];
+function u() {
+  var n = r(a);
+  return Object.assign({}, n, { Wait: o });
+}
+function c(t) {
+  var e = r(a),
+    i = e.isWaiting,
+    u = e.startWaiting,
+    c = e.endWaiting;
+  return {
+    isWaiting: function() {
+      return i(t);
+    },
+    startWaiting: function() {
+      return u(t);
+    },
+    endWaiting: function() {
+      return c(t);
+    },
+    Wait: function(r) {
+      return n.createElement(o, Object.assign({}, { on: t }, r));
+    }
+  };
+}
+var f = function(n) {
+    return n.length > 0;
+  },
+  s = function(n, t) {
+    return n.includes(t);
+  },
+  d = function(n, t) {
+    return s(n, t) ? n : n.concat([t]);
+  },
+  l = function(n, t) {
+    return n.filter(function(n) {
+      return n !== t;
+    });
+  };
+function g(t) {
+  var r = e([]),
+    i = r[0],
+    o = r[1];
   return n.createElement(
     a.Provider,
     {
       value: {
-        waiters: s,
-        createWaitingContext: function(t) {
-          return {
-            isWaiting: function() {
-              return e(s, t);
-            },
-            startWaiting: function() {
-              return g(u(s, t));
-            },
-            endWaiting: function() {
-              return g(c(s, t));
-            },
-            Wait: function(r) {
-              return n.createElement(o, Object.assign({}, { on: t }, r));
-            }
-          };
-        },
+        waiters: i,
+        createWaitingContext: c,
         anyWaiting: function() {
-          return i(s);
+          return f(i);
         },
         isWaiting: function(n) {
-          return e(s, n);
+          return s(i, n);
         },
         startWaiting: function(n) {
-          g(u(s, n));
+          o(d(i, n));
         },
         endWaiting: function(n) {
-          g(c(s, n));
+          o(l(i, n));
         }
       }
     },
-    r.children
+    t.children
   );
 }
-function s() {
-  var n = r(a);
-  return Object.assign({}, n, { Wait: o });
+function W(t, r) {
+  void 0 === r && (r = {});
+  var e = r.forwardRef;
+  void 0 === e && (e = !1);
+  var o = r.propName;
+  void 0 === o && (o = "waiting");
+  var c,
+    f = function(r) {
+      var i = u().Wait;
+      return n.createElement(a.Consumer, null, function(a) {
+        var u;
+        return (
+          (a.Wait = i),
+          n.createElement(
+            t,
+            Object.assign({}, r, (((u = {})[o] = a), u), {
+              ref: e ? r.forwardedRef : null
+            })
+          )
+        );
+      });
+    };
+  return (
+    (f.displayName =
+      "WithWaiting(" + ((c = t).displayName || c.name || "Component") + ")"),
+    (f.WrappedComponent = t),
+    i(
+      e
+        ? n.forwardRef(function(t, r) {
+            return n.createElement(
+              f,
+              Object.assign({}, t, { forwardedRef: r })
+            );
+          })
+        : f,
+      t
+    )
+  );
 }
-export { f as Waiter, s as useWait };
+export { u as useWait, g as Waiter, W as injectWaiting };
 //# sourceMappingURL=react-wait.esm.js.map
