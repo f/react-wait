@@ -33,7 +33,7 @@ test("isWaiting", async () => {
   expect(api.isWaiting(["a b", "c d"], "a b")).toEqual(true);
 });
 
-test("isWaiting", async () => {
+test("anyWaiting", async () => {
   expect(api.anyWaiting(["a", "b"])).toEqual(true);
   expect(api.anyWaiting(["a", "b", "c"])).toEqual(true);
   expect(api.anyWaiting([])).toEqual(false);
