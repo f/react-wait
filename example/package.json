@@ -1,0 +1,22 @@
+{
+  "name": "react-wait-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "react": ">=16.7.0-alpha",
+    "react-dom": ">=16.7.0-alpha",
+    "react-scripts": "2.0.3",
+    "react-wait": "0.3.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
