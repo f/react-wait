@@ -180,7 +180,7 @@ return <button onClick={() => startWaiting("message")}>Start</button>;
 Stops the given waiter.
 
 ```jsx
-const { end } = useWait();
+const { endWaiting } = useWait();
 
 return <button onClick={() => endWaiting("message")}>Stop</button>;
 ```
@@ -252,6 +252,32 @@ function CreateUserButton() {
     </Button>
   );
 }
+```
+
+#### `injectWaiting(WrappedComponent, { forwardRef: boolean, propName: string })` HOC
+
+This function is a High Order Component (HOC) factory which injects waiting API into the wrapped class or function component via `waiting` prop. But it can be overridden by specifying `propName` object as a second argument.
+
+> Second parameters in the function(options) is optional.
+
+```jsx
+import { injectWaiting } from "react-wait";
+class MyClassComponent extends React.Component {
+  render() {
+    const { isWaiting, Wait } = this.props.waiting;
+    return (
+      <div>
+        <button disabled={isWaiting("creating user")}>
+          <Wait on="creating user" fallback={<div>Creating User...</div>}>
+            Create User
+          </Wait>
+        </button>
+      </div>
+    );
+  }
+}
+
+export default injectWaiting(MyClassComponent);
 ```
 
 ## Contributors
