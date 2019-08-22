@@ -33,7 +33,6 @@ function injectWaiting(
   };
 
   WithWaiting.displayName = `WithWaiting(${getDisplayName(WrappedComponent)})`;
-  WithWaiting.WrappedComponent = WrappedComponent;
 
   if (forwardRef) {
     return hoistNonReactStatics(
