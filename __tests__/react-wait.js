@@ -2,10 +2,19 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import { Waiter, useWait } from "../src/index";
+import { Waiter, useWait, injectWaiting } from "../src/index";
 import * as api from "../src/api";
 
 Enzyme.configure({ adapter: new Adapter() });
+
+function assertInjectedProps(component, propName) {
+  expect(component.prop(propName).waiters).toEqual([]);
+  expect(component.prop(propName).anyWaiting).toBeInstanceOf(Function);
+  expect(component.prop(propName).isWaiting).toBeInstanceOf(Function);
+  expect(component.prop(propName).startWaiting).toBeInstanceOf(Function);
+  expect(component.prop(propName).endWaiting).toBeInstanceOf(Function);
+  expect(component.prop(propName).Wait).toBeInstanceOf(Function);
+}
 
 test("startWaiting", async () => {
   expect(api.startWaiting(["a"], "b")).toEqual(["a", "b"]);
@@ -314,4 +323,82 @@ test("contextful", async () => {
       .last()
       .html()
   ).toBe('<div id="waiters">[]</div>');
+});
+
+test("injectWaiting with options", async () => {
+  const propName = "customPropName";
+  const wrapperRef = React.createRef();
+
+  class ClassComponent extends React.Component {
+    render() {
+      return <div>Class Component</div>;
+    }
+  }
+
+  const InjectedComponent = injectWaiting(ClassComponent, {
+    propName,
+    forwardRef: true
+  });
+  const app = mount(
+    <Waiter>
+      <InjectedComponent ref={wrapperRef} />
+    </Waiter>
+  );
+  const component = app.find(ClassComponent);
+
+  expect(component.prop(propName)).not.toBeFalsy();
+  expect(wrapperRef.current).toBe(component.instance());
+  assertInjectedProps(component, propName);
+});
+
+test("injectWaiting without options", async () => {
+  const propName = "customPropName";
+  const wrapperRef = React.createRef();
+
+  class ClassComponent extends React.Component {
+    render() {
+      return <div>Class Component</div>;
+    }
+  }
+
+  const InjectedComponent = injectWaiting(ClassComponent);
+  const app = mount(
+    <Waiter>
+      <InjectedComponent />
+    </Waiter>
+  );
+  const component = app.find(ClassComponent);
+
+  expect(component.prop(propName)).toBeFalsy();
+  expect(wrapperRef.current).not.toBe(component.instance());
+  assertInjectedProps(component, "waiting");
+});
+
+test("injectWaiting getDisplayName", async () => {
+  const displayName = "qwe";
+
+  function WithDisplayName() {
+    return <div>waiting</div>;
+  }
+
+  function WithName() {
+    return <div>waiting</div>;
+  }
+
+  function WithNothing() {
+    return <div>waiting</div>;
+  }
+
+  WithDisplayName.displayName = displayName;
+  delete WithNothing.name;
+
+  const InjectedWithDisplayName = injectWaiting(WithDisplayName);
+  const InjectedWithName = injectWaiting(WithName);
+  const InjectedWithNothing = injectWaiting(WithNothing);
+
+  expect(InjectedWithDisplayName.displayName).toEqual(
+    `WithWaiting(${displayName})`
+  );
+  expect(InjectedWithName.displayName).toEqual(`WithWaiting(${WithName.name})`);
+  expect(InjectedWithNothing.displayName).toEqual(`WithWaiting(Component)`);
 });
